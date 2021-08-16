@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [calc, setCalc] = useState("");
@@ -20,7 +21,7 @@ function App() {
     const digitos = [];
 
     for (let i = 1; i < 10; i++) {
-      digitos.push(<button onClick={() => updateCalc(i.toString())} key={i}>{i}</button>);
+      digitos.push(<button className="col bg-dark" onClick={() => updateCalc(i.toString())} key={i}>{i}</button>);
     }
 
     return digitos;
@@ -47,27 +48,28 @@ function App() {
   return (
     <div className="App">
       <div className="calculadora">
-        <div className="display">
-          { calc || "0" }
+        <div className="d-grid bg-dark text-white pt-4">
+          <div className="me-3 fs-1 text-end">{ calc || "0" }</div>
         </div>
 
-        <div className="operadores">
+        <div className="operadores bg-danger">
           <button onClick={() => updateCalc('/')}>/</button>
           <button onClick={() => updateCalc('*')}>*</button>
           <button onClick={() => updateCalc('+')}>+</button>
           <button onClick={() => updateCalc('-')}>-</button>
-
           <button onClick={borrarUltimo}>DEL</button>
           <button onClick={borrar}>AC</button>
         </div>
 
-        <div className="digitos">
-          { crearDigitos() }
-          <button onClick={() => updateCalc('0')}>0</button>
-          <button onClick={() => updateCalc('.')}>.</button>
-          <button onClick={ calcular }>=</button>
-
+        <div className="row">
+          <div className="numeros">
+            { crearDigitos() }
+            <button className="bg-dark" onClick={() => updateCalc('0')}>0</button>
+            <button className="bg-dark" onClick={() => updateCalc('.')}>.</button>
+            <button className="bg-dark" onClick={ calcular }>=</button>
+          </div>
         </div>
+
       </div>  
     </div>
   );
