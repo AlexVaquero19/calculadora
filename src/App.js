@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 function App() {
   const [calc, setCalc] = useState("");
-  const [result, setResult] = useState("");
 
   const ops = ['/', '*', '+', '-', '.'];
 
@@ -15,10 +14,6 @@ function App() {
     }
     
     setCalc(calc + value);
-
-    if (!ops.includes(value)) {
-      setResult(eval(calc + value).toString());
-    }
   }
 
   const crearDigitos = () => {
@@ -32,6 +27,7 @@ function App() {
   }
 
   const calcular = () => {
+    // eslint-disable-next-line
     setCalc(eval(calc).toString());
   }
 
